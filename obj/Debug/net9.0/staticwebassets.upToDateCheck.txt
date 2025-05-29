@@ -1,0 +1,6 @@
+D:\C#\WebQuizApp\wwwroot\player.html
+D:\C#\WebQuizApp\wwwroot\host.html
+D:\C#\WebQuizApp\wwwroot\index.html
+wwwroot\host.html
+wwwroot\index.html
+wwwroot\player.html

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+</head>
+<body>
+    <h1>Quiz App</h1>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("https://localhost:7083/quizHub")
+            .build();
+
+        connection.on("ReceiveAnswer", (username, questionId, selectedOption) => {
+            console.log(`User ${username} answered question ${questionId} with ${selectedOption}`);
+        });
+
+        connection.start().then(() => {
+            console.log("Connected to SignalR");
+        }).catch(err => console.error(err));
+    </script>
+</body>
+</html>

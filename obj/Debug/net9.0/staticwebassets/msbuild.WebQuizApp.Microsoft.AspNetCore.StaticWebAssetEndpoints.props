@@ -1,0 +1,40 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/WebQuizApp/host.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\host.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-cDJVaNdPGZoCVGHg\u002B\u002Bci9St/WcYHHBsVZTKTkuYFwQM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3407"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022cDJVaNdPGZoCVGHg\u002B\u002Bci9St/WcYHHBsVZTKTkuYFwQM=\u0022"},{"Name":"Last-Modified","Value":"Fri, 23 May 2025 08:02:49 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WebQuizApp/host.slu2b00hfu.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\host.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"slu2b00hfu"},{"Name":"integrity","Value":"sha256-cDJVaNdPGZoCVGHg\u002B\u002Bci9St/WcYHHBsVZTKTkuYFwQM="},{"Name":"label","Value":"_content/WebQuizApp/host.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3407"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022cDJVaNdPGZoCVGHg\u002B\u002Bci9St/WcYHHBsVZTKTkuYFwQM=\u0022"},{"Name":"Last-Modified","Value":"Fri, 23 May 2025 08:02:49 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WebQuizApp/index.h0ix42htoq.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"h0ix42htoq"},{"Name":"integrity","Value":"sha256-cfVAMpoHNXAdZaHkdDXNX2tVNvQWJDo9wDdAQyiaOio="},{"Name":"label","Value":"_content/WebQuizApp/index.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"740"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022cfVAMpoHNXAdZaHkdDXNX2tVNvQWJDo9wDdAQyiaOio=\u0022"},{"Name":"Last-Modified","Value":"Mon, 19 May 2025 21:14:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WebQuizApp/index.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-cfVAMpoHNXAdZaHkdDXNX2tVNvQWJDo9wDdAQyiaOio="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"740"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022cfVAMpoHNXAdZaHkdDXNX2tVNvQWJDo9wDdAQyiaOio=\u0022"},{"Name":"Last-Modified","Value":"Mon, 19 May 2025 21:14:58 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WebQuizApp/player.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\player.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-RdwDCdUXYRX9MB4PSPDmb8obPzomTXEkN0rVwLr/8KI="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"4205"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022RdwDCdUXYRX9MB4PSPDmb8obPzomTXEkN0rVwLr/8KI=\u0022"},{"Name":"Last-Modified","Value":"Thu, 29 May 2025 11:17:09 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/WebQuizApp/player.za7nr9eobt.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\player.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"za7nr9eobt"},{"Name":"integrity","Value":"sha256-RdwDCdUXYRX9MB4PSPDmb8obPzomTXEkN0rVwLr/8KI="},{"Name":"label","Value":"_content/WebQuizApp/player.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"4205"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022RdwDCdUXYRX9MB4PSPDmb8obPzomTXEkN0rVwLr/8KI=\u0022"},{"Name":"Last-Modified","Value":"Thu, 29 May 2025 11:17:09 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

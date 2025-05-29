@@ -1,0 +1,169 @@
+[
+  {
+    "ContainingType": "WebQuizApp.Controllers.GameController",
+    "Method": "EndGame",
+    "RelativePath": "api/Game/end",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.GameController",
+    "Method": "ResetScores",
+    "RelativePath": "api/Game/reset-scores",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.GameController",
+    "Method": "StartGame",
+    "RelativePath": "api/Game/start",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "questions",
+        "Type": "System.Collections.Generic.List\u00601[[WebQuizApp.Models.Question, WebQuizApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.GameController",
+    "Method": "GetGameStatus",
+    "RelativePath": "api/Game/status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.PlayerController",
+    "Method": "SubmitAnswer",
+    "RelativePath": "api/Player/answer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "answer",
+        "Type": "WebQuizApp.Models.Answer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.PlayerController",
+    "Method": "JoinGame",
+    "RelativePath": "api/Player/join",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "player",
+        "Type": "WebQuizApp.Models.Player",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.QuestionController",
+    "Method": "GetQuestions",
+    "RelativePath": "api/Question",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.QuestionController",
+    "Method": "AddQuestions",
+    "RelativePath": "api/Question/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "newQuestion",
+        "Type": "WebQuizApp.Models.Question",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.QuestionController",
+    "Method": "GetUserAnswers",
+    "RelativePath": "api/Question/answer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.QuestionController",
+    "Method": "UpdateQuestion",
+    "RelativePath": "api/Question/id",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "updatedQuestion",
+        "Type": "WebQuizApp.Models.Question",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.QuestionController",
+    "Method": "DeleteQuestion",
+    "RelativePath": "api/Question/id",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebQuizApp.Controllers.QuestionController",
+    "Method": "SubmitAnswer",
+    "RelativePath": "api/Question/submit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "answer",
+        "Type": "WebQuizApp.Models.Answer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

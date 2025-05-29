@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Gracz</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+</head>
+<body>
+    <h1>Quiz – Gracz</h1>
+
+    <div id="login">
+        <input type="text" id="username" placeholder="Your name" />
+        <button onclick="joinGame()">Dołącz do gry</button>
+    </div>
+
+    <div id="quiz" style="display:none;">
+        <h2 id="questionText"></h2>
+        <div id="options"></div>
+    </div>
+    <div id="endScreen" style="display: none;">
+        <h2>Koniec gry!</h2>
+        <button onclick="window.location.reload()">Zagraj ponownie</button>
+        <h3>Ranking końcowy:</h3>
+        <ul id="finalRankingList"></ul>
+    </div>
+
+    <script>
+        let username = "";
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/gameHub")
+            .build();
+
+        connection.on("ReceiveQuestion", (q) => {
+            document.getElementById("quiz").style.display = "block";
+            document.getElementById("questionText").innerText = q.text;
+            const optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+
+            q.options.forEach(opt => {
+                const btn = document.createElement("button");
+                btn.innerText = opt;
+                btn.onclick = () => sendAnswer(opt, q.id);
+                optionsDiv.appendChild(btn);
+            });
+        });
+
+        connection.on("GameEnded", () => {
+            alert("Gra zakończona!");
+
+            // Pobierz ranking
+            fetch("/api/game/status")
+                .then(res => res.json())
+                .then(data => {
+                    const finalList = document.getElementById("finalRankingList");
+                    finalList.innerHTML = "";
+
+                    data.players
+                        .sort((a, b) => b.score - a.score)
+                        .forEach(p => {
+                            const li = document.createElement("li");
+                            li.innerText = `${p.username}: ${p.score} pkt`;
+                            finalList.appendChild(li);
+                        });
+
+                    document.getElementById("quiz").style.display = "none";
+                    document.getElementById("endScreen").style.display = "block";
+                });
+        });
+
+        connection.start().then(() => {
+            console.log("Player connected.");
+        });
+
+        function joinGame() {
+            username = document.getElementById("username").value;
+            fetch("/api/player/join", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username })
+            }).then(res => {
+                if (res.ok) {
+                    document.getElementById("login").style.display = "none";
+                    alert("You're logged.");
+                } else {
+                    alert("Nie mozna dołączyć. Gra nie została jeszcze rozpoczeta.");
+                }
+            })
+                .catch(err => {
+                    console.error("Błąd podczas dołączania:", err);
+                    alert("Wystąpił błąd połączenia.");
+                });
+        }
+
+        function sendAnswer(selectedOption, questionId) {
+            fetch("/api/player/answer", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    username,
+                    selectedOption,
+                    questionId
+                })
+            }).then(res => {
+                if (res.ok) {
+                    alert("Odpowiedź wysłana!");
+                } else {
+                    alert("Odpowiedziałeś już na to pytanie!")
+                }
+                
+            })
+                .catch(err => {
+                    console.error("Błąd wysłania odpowiedzi:", err)
+                    alert("Problem z serwerem")
+                });
+        }
+    </script>
+</body>
+</html>

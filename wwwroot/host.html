@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Host</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+</head>
+<body>
+    <h1>Host: Quiz App</h1>
+    <button onclick="startGame()">▶️ Rozpocznij grę</button>
+    <button onclick="startNextQuestion()">Next Question</button>
+    <button onclick="showRanking()">Show Ranking</button>
+
+    <h2 id="questionText"></h2>
+    <ul id="optionsList"></ul>
+
+    <h3>Ranking:</h3>
+    <ul id="rankingList"></ul>
+
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/gameHub")
+            .build();
+
+        connection.on("ReceiveQuestion", (q) => {
+            document.getElementById("questionText").innerText = q.text;
+            const list = document.getElementById("optionsList");
+            list.innerHTML = "";
+            q.options.forEach(opt => {
+                const li = document.createElement("li");
+                li.innerText = opt;
+                list.appendChild(li);
+            });
+        });
+
+        connection.on("ReceiveRanking", (ranking) => {
+            const list = document.getElementById("rankingList");
+            list.innerHTML = "";
+            ranking.forEach(p => {
+                const li = document.createElement("li");
+                li.innerText = `${p.username}: ${p.score} points`;
+                list.appendChild(li);
+            });
+        });
+
+        connection.on("GameEnded", () => {
+            alert("Gra zakończona!");
+        });
+
+        connection.start().then(() => {
+            console.log("Host connected.");
+        });
+
+        function startGame() {
+            resetScores();
+            const questions = [
+                {
+                    id: 1,
+                    text: "Ile to 2 + 2?",
+                    options: ["3", "4", "5", "22"],
+                    correctAnswer: "4",
+                    timeLimit: 15
+                },
+                {
+                    id: 2,
+                    text: "Stolica Polski?",
+                    options: ["Kraków", "Gdańsk", "Warszawa", "Poznań"],
+                    correctAnswer: "Warszawa",
+                    timeLimit: 15
+                },
+                {
+                    id: 3,
+                    text: "Stolica Niemiec??",
+                    options: ["Berlin", "Monachium", "Margburg", "Frankfurt"],
+                    correctAnswer: "Warszawa",
+                    timeLimit: 15
+                }
+            ];
+
+            fetch("/api/game/start", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(questions)
+            }).then(res => {
+                if (res.ok) alert("Gra rozpoczęta!");
+                else alert("Nie udało się rozpocząć gry.");
+            });
+        }
+
+        function startNextQuestion() {
+            connection.invoke("Next");
+        }
+
+        function showRanking() {
+            connection.invoke("ShowRanking");
+        }
+
+        function resetScores() {
+            fetch("/api/game/reset-scores", { method: "POST" })
+                .then(res => {
+                    if (res.ok) alert("Wyniki wyzerowane!");
+                });
+        }
+    </script>
+</body>
+</html>
