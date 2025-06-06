@@ -11,13 +11,25 @@ namespace WebQuizApp.Hubs
             return base.OnConnectedAsync();
         }
 
-        public async Task StartNextQuestion()
+        public async Task JoinGroup(string code)
         {
-            var game = GameManager.CurrentGame;
+            await Groups.AddToGroupAsync(Context.ConnectionId, code);
+            Console.WriteLine($"Client {Context.ConnectionId} joined group {code}");
+        }
+
+        public async Task StartNextQuestion(string code)
+        {
+            var game = GameManager.GetGame(code);
+
+            if (game == null)
+            {
+                await Clients.Caller.SendAsync("Error", "Gra nie istnieje.");
+                return;
+            }
 
             if (!game.IsActive || game.CurrentQuestionIndex >= game.Questions.Count)
             {
-                await Clients.All.SendAsync("GameEnded");
+                await Clients.Group(code).SendAsync("GameEnded");
                 return;
             }
 
@@ -28,7 +40,7 @@ namespace WebQuizApp.Hubs
                 player.HasAnswered = false;
             }
 
-            await Clients.All.SendAsync("ReceiveQuestion", new
+            await Clients.Group(code).SendAsync("ReceiveQuestion", new
             {
                 question.Id,
                 question.Text,
@@ -37,19 +49,33 @@ namespace WebQuizApp.Hubs
             });
         }
 
-        public async Task ShowRanking()
+        public async Task ShowRanking(string code)
         {
-            var ranking = GameManager.CurrentGame.Players
+            var game = GameManager.GetGame(code);
+            if (game == null)
+            {
+                await Clients.Caller.SendAsync("Error", "Gra nie istnieje.");
+                return;
+            }
+
+            var ranking = game.Players
                 .OrderByDescending(p => p.Score)
                 .Select(p => new { p.Username, p.Score });
 
-            await Clients.All.SendAsync("ReceiveRanking", ranking);
+            await Clients.Group(code).SendAsync("ReceiveRanking", ranking);
         }
 
-        public async Task Next()
+        public async Task Next(string code)
         {
-            GameManager.CurrentGame.CurrentQuestionIndex++;
-            await StartNextQuestion();
+            var game = GameManager.GetGame(code);
+            if (game == null)
+            {
+                await Clients.Caller.SendAsync("Error", "Gra nie istnieje.");
+                return;
+            }
+
+            game.CurrentQuestionIndex++;
+            await StartNextQuestion(code);
         }
 
     }

@@ -37,5 +37,6 @@ D:\C#\WebQuizApp\obj\Debug\net9.0\WebQuizApp.genruntimeconfig.cache
 D:\C#\WebQuizApp\obj\Debug\net9.0\ref\WebQuizApp.dll
 D:\C#\WebQuizApp\bin\Debug\net9.0\WebQuizApp.staticwebassets.runtime.json
 D:\C#\WebQuizApp\obj\Debug\net9.0\compressed\yb4wetvdmi-h0ix42htoq.gz
-D:\C#\WebQuizApp\obj\Debug\net9.0\compressed\xkvej55te6-slu2b00hfu.gz
-D:\C#\WebQuizApp\obj\Debug\net9.0\compressed\3zfzn7y2c8-za7nr9eobt.gz
+D:\C#\WebQuizApp\obj\Debug\net9.0\WebQuizApp.sourcelink.json
+D:\C#\WebQuizApp\obj\Debug\net9.0\compressed\xkvej55te6-onc653pclg.gz
+D:\C#\WebQuizApp\obj\Debug\net9.0\compressed\3zfzn7y2c8-godaaugge0.gz

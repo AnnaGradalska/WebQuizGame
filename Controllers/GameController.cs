@@ -17,35 +17,45 @@ namespace WebQuizApp.Controllers
                 return BadRequest("Lista of questions is empty");
             }
 
-            GameManager.StartGame(questions);
-
-            return Ok(new { GameManager.CurrentGame.GameCode, GameManager.CurrentGame.IsActive });
+            var game = GameManager.CreateGame(questions);
+            return Ok(new {game.Code});
         }
 
         [HttpPost("end")]
-        public IActionResult EndGame()
+        public IActionResult EndGame([FromQuery] string code)
         {
-            GameManager.EndGame();
+            var game = GameManager.GetGame(code);
+            if (game == null)
+            {
+                return NotFound("Gra nie istnieje.");
+            }
+
+            game.IsActive = true;
             return Ok("The game is finished");
         }
 
         [HttpGet("status")]
-        public IActionResult GetGameStatus()
+        public IActionResult GetGameStatus([FromQuery] string code)
         {
+            var game = GameManager.GetGame(code);
+            if(game == null)
+            {
+                return NotFound("Gra nie istnieje.");
+            }
             return Ok(new
             {
-                GameManager.CurrentGame.GameCode,
-                GameManager.CurrentGame.IsActive,
-                Players = GameManager.CurrentGame.Players.Select(p => new { p.Username, p.Score }),
-                CurrentQuestion = GameManager.CurrentGame.Questions.ElementAtOrDefault(GameManager.CurrentGame.CurrentQuestionIndex)?.Text
+                game.Code,
+                game.IsActive,
+                Players = game.Players.Select(p => new { p.Username, p.Score }),
+                CurrentQuestion = game.Questions.ElementAtOrDefault(game.CurrentQuestionIndex)?.Text
             });
         }
 
-        [HttpPost("reset-scores")]
-        public IActionResult ResetScores()
-        {
-            GameManager.ResetScores();
-            return Ok("Wyniki zostały wyzerowane");
-        }
+        //[HttpPost("reset-scores")]
+        //public IActionResult ResetScores()
+        //{
+        //    GameManager.ResetScores();
+        //    return Ok("Wyniki zostały wyzerowane");
+        //}
     }
 }

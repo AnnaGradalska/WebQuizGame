@@ -10,25 +10,38 @@ namespace WebQuizApp.Controllers
     {
 
         [HttpPost("join")]
-        public IActionResult JoinGame([FromBody] Player player)
+        public IActionResult JoinGame([FromQuery] string code,[FromBody] Player player)
         {
-            if (!GameManager.CurrentGame.IsActive)
+            var game = GameManager.GetGame(code);
+            if (game == null || !game.IsActive)
             {
-                return BadRequest("Gra nie jest jeszcze aktywna");
+                return BadRequest("Gra o podanym kodzie nie jest aktywna lub nie istnieje");
             }
 
-            GameManager.CurrentGame.Players.Add(new Player { Username = player.Username});
+            if (game.Players.Any(p => p.Username == player.Username))
+            {
+                return BadRequest("Gracz o podanej nazwie istnieje!");
+            }
+
+            game.Players.Add(new Player { Username = player.Username });
+
             return Ok("Player added to the game.");
         }
 
         [HttpPost("answer")]
-        public IActionResult SubmitAnswer([FromBody] Answer answer)
+        public IActionResult SubmitAnswer([FromQuery] string code, [FromBody] Answer answer)
         {
-            var player = GameManager.CurrentGame.Players.FirstOrDefault(p => p.Username == answer.Username);
+            var game = GameManager.GetGame(code);
+            if(game == null)
+            {
+                return BadRequest("Gra nie istnieje");
+            }
+
+            var player = game.Players.FirstOrDefault(p => p.Username == answer.Username);
             if (player == null)
                 return NotFound("Gracz nie został znaleziony.");
 
-            var question = GameManager.CurrentGame.Questions.ElementAtOrDefault(GameManager.CurrentGame.CurrentQuestionIndex);
+            var question = game.Questions.ElementAtOrDefault(game.CurrentQuestionIndex);
             if (question == null)
                 return BadRequest("Pytanie nie istnieje.");
 

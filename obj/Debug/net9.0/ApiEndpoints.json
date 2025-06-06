@@ -6,17 +6,13 @@
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WebQuizApp.Controllers.GameController",
-    "Method": "ResetScores",
-    "RelativePath": "api/Game/reset-scores",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -42,7 +38,13 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -53,6 +55,11 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": false
+      },
       {
         "Name": "answer",
         "Type": "WebQuizApp.Models.Answer",
@@ -69,6 +76,11 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": false
+      },
       {
         "Name": "player",
         "Type": "WebQuizApp.Models.Player",

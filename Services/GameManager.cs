@@ -4,32 +4,43 @@ namespace WebQuizApp.Services
 {
     public static class GameManager
     {
-        public static Game CurrentGame { get; private set; } = new Game();
+        public static Dictionary<string, Game> Games { get; private set; } = new();
 
-        public static void StartGame(List<Question> questions)
+        public static Game CreateGame(List<Question> questions)
         {
-            CurrentGame = new Game
+            var game = new Game
             {
                 Questions = questions,
                 IsActive = true,
-                CurrentQuestionIndex = 0
+                CurrentQuestionIndex = 0,
+                Code = Guid.NewGuid().ToString("N")[..6].ToUpper()
             };
+
+            Games[game.Code] = game;
+
+            return game;
         }
 
-        public static void EndGame()
+        public static Game? GetGame(string code)
         {
-            CurrentGame.IsActive = false;
-            CurrentGame.Players.Clear();
+            Games.TryGetValue(code.ToUpper(), out var game);
+            return game;
         }
 
-        public static void ResetGame()
-        {
-            CurrentGame = new Game();
-        }
+        //public static void EndGame()
+        //{
+        //    CurrentGame.IsActive = false;
+        //    CurrentGame.Players.Clear();
+        //}
 
-        public static void ResetScores()
-        {
-            CurrentGame = new Game();
-        }
+        //public static void ResetGame()
+        //{
+        //    CurrentGame = new Game();
+        //}
+
+        //public static void ResetScores()
+        //{
+        //    CurrentGame = new Game();
+        //}
     }
 }

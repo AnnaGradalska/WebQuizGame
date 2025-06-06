@@ -50,6 +50,15 @@
         "tags": [
           "Game"
         ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -62,17 +71,14 @@
         "tags": [
           "Game"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
-        }
-      }
-    },
-    "/api/Game/reset-scores": {
-      "post": {
-        "tags": [
-          "Game"
         ],
         "responses": {
           "200": {
@@ -85,6 +91,15 @@
       "post": {
         "tags": [
           "Player"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -116,6 +131,15 @@
       "post": {
         "tags": [
           "Player"
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "requestBody": {
           "content": {
