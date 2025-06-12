@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>godaaugge0</Fingerprint>
-      <Integrity>QBp2egUfRa+/X9tVJyzVKr/WSOlW/n6RbkV+wFn3yZM=</Integrity>
+      <Fingerprint>43rxxu76jc</Fingerprint>
+      <Integrity>oA95J0W9zOmM7IWFMW1Pf9MOgiiWOUpesGtVaHQA/OU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\player.html'))</OriginalItemSpec>

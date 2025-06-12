@@ -30,7 +30,7 @@ namespace WebQuizApp.Controllers
                 return NotFound("Gra nie istnieje.");
             }
 
-            game.IsActive = true;
+            game.IsActive = false;
             return Ok("The game is finished");
         }
 

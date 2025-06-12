@@ -14,6 +14,7 @@
     </div>
 
     <div id="quiz" style="display:none;">
+        <div id="counter">10</div>
         <h2 id="questionText"></h2>
         <div id="options"></div>
     </div>
@@ -43,6 +44,21 @@
                 btn.onclick = () => sendAnswer(opt, q.id);
                 optionsDiv.appendChild(btn);
             });
+
+            let timeLeft = q.timeLimit;
+            document.getElementById("counter").innerText = timeLeft;
+
+            const interval = setInterval(() => {
+                timeLeft--;
+                document.getElementById("counter").innerText = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+
+                    const buttons = document.querySelectorAll("#options button");
+                    buttons.forEach(btn => btn.disabled = true);
+                }
+            }, 1000);
         });
 
         connection.on("GameEnded", () => {
