@@ -10,6 +10,7 @@
     <button onclick="startNextQuestion()">Next Question</button>
     <button onclick="showRanking()">Show Ranking</button>
 
+    <h2 id="pinDisplay">PIN do gry: ...</h2>
     <h2 id="questionText"></h2>
     <ul id="optionsList"></ul>
 
@@ -80,18 +81,22 @@
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(questions)
-            }).then(res => {
-                if (res.ok) alert("Gra rozpoczęta!");
-                else alert("Nie udało się rozpocząć gry.");
-            });
+            }).then(res => res.json())
+                .then(data => {
+                    code = data.code;
+                    document.getElementById("pinDisplay").innerText = `PIN do gry: ${code}`;
+                    alert("Gra rozpoczęta! Kod PIN: " + code);
+                    connection.invoke("JoinGroup", code);
+                });
         }
 
         function startNextQuestion() {
-            connection.invoke("Next");
+            connection.invoke("Next", code);
+            console.log("Here1");
         }
 
         function showRanking() {
-            connection.invoke("ShowRanking");
+            connection.invoke("ShowRanking", code);
         }
 
         function resetScores() {
